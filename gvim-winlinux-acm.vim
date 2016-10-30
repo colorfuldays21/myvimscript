@@ -5,6 +5,7 @@ set tabstop=4
 set shiftwidth=4
 set nu
 set nobackup
+set noundofile
 winpos 200 100
 set lines=24 columns=80
 func! CompileC()
@@ -106,6 +107,10 @@ func! BuildRun()
 			exec "!g++ -g -O2 -std=gnu++14 -static % -o %< && cls && %<"
 		elseif "python"==&filetype
 			exec "!cls && python %"
+		elseif "javascript"==&filetype
+			exec "!cls && node %"
+		elseif "go"==&filetype
+			exec "!cls && go run %"
 		endif
 	else
 "linux
