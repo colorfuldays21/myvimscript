@@ -121,6 +121,8 @@ func! BuildRun()
 			if has("gui_running")
 				if 0!=search("GL/glut\.h")
 					exec "!g++ -g -O2 -std=gnu++14 % -o %< -lGL -lGLU -lglut && ./%<&"
+				elseif 0!=search("gtk/gtk\.h")
+					exec "!g++ -g -O2 -std=gnu++14 % -o %< `pkg-config --cflags --libs gtk+-3.0` && ./%<"
 				else
 					exec "!g++ -g -O2 -std=gnu++14 -static % -o %< && gnome-terminal -x bash -c \"./%< && read -n1 -p 'Hit any key to close this window...'\""
 				endif
